@@ -157,7 +157,7 @@ function App() {
                 // Check if the checkbox is checked
                 const isWrongChecked = checkbox.checked;
                 // @ts-ignore
-                const model = dataset[i]["model"];
+                const model = dataset[i]["model_name"];
                 setIsWrong([...isWrong, isWrongChecked]);
                 setTimeDiffs([...timeDiffs, timeDiff]);
                 setModels([...models, model]);
@@ -272,7 +272,7 @@ function App() {
                             }</b>
                         </span><pre>  [is/are] related to {
                             // @ts-ignore
-                            dataset ? dataset[i]["concept"] : ""
+                            dataset ? dataset[i]["main_concept"] : ""
                         }</pre>
                     </p>
                 </div>
