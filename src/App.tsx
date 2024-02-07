@@ -12,10 +12,10 @@ import {data} from "./data/data";
 
 type DataType = {
     name: string,
-    answers: ("yes" | "no")[],
+    answers: ("yes" | "no" | "wrong")[],
     i: number,
     dataset: string[],
-    isWrong: (true | false)[],
+    // isWrong: (true | false)[],
     timeDiffs: number[],
     models: string[],
     date: Date
@@ -46,8 +46,8 @@ function App() {
     const [exampleSeen, setExampleSeen] = useState(false);
     const [dataset, setDataset] = useState<string[] | null>([]);
     const [i, setI] = useState(0);
-    const [answers, setAnswers] = useState<("yes" | "no")[]>([]);
-    const [isWrong, setIsWrong] = useState<(true | false)[]>([]);
+    const [answers, setAnswers] = useState<("yes" | "no" | "wrong")[]>([]);
+    // const [isWrong, setIsWrong] = useState<(true | false)[]>([]);
     const [models, setModels] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDownloaded, setIsDownloaded] = useState(false);
@@ -93,7 +93,7 @@ function App() {
         }
     }
 
-    const onClick = (answer: ("yes" | "no")) => {
+    const onClick = (answer: ("yes" | "no" | "wrong")) => {
         const newAnswers = [...answers, answer];
         setAnswers(newAnswers);
         next(newAnswers);
@@ -128,7 +128,7 @@ function App() {
                             setAnswers(data.answers);
                             setTimeDiffs(data.timeDiffs);
                             setI(data.i);
-                            setIsWrong(data.isWrong);
+                            // setIsWrong(data.isWrong);
                             setModels(data.models);
                             setReady(true);
                         }
@@ -142,12 +142,12 @@ function App() {
         setTimeBetweenQuestionsStart(new Date());
     }
 
-    const next = async (newAnswers: ("yes" | "no")[]) => {
+    const next = async (newAnswers: ("yes" | "no" | "wrong")[]) => {
         if (!isLoading) {
             setIsLoading(true);
             const timeDiff = calculateTimeDifference(timeBetweenQuestionsStart, new Date())
 
-            const checkbox = document.getElementById("hard-checkbox") as HTMLInputElement;
+            //const checkbox = document.getElementById("hard-checkbox") as HTMLInputElement;
             if (dataset) {
                 updateProgressBar(i, dataset.length);
                 setIsDownloaded(true);
@@ -155,10 +155,10 @@ function App() {
 
             if (dataset && i < dataset.length) {
                 // Check if the checkbox is checked
-                const isWrongChecked = checkbox.checked;
+                // const isWrong = checkbox.checked;
                 // @ts-ignore
                 const model = dataset[i]["model_name"];
-                setIsWrong([...isWrong, isWrongChecked]);
+                // setIsWrong([..."yes" | "no" | "wrong"ong, "yes" | "no" | "wrong"ongChecked]);
                 setTimeDiffs([...timeDiffs, timeDiff]);
                 setModels([...models, model]);
                 // Save the answers to firebase
@@ -171,7 +171,7 @@ function App() {
                             answers: newAnswers,
                             i: newAnswers.length,
                             dataset: dataset,
-                            isWrong: [...isWrong, checkbox.checked],
+                            // isWrong: [...isWrong, checkbox.checked],
                             timeDiffs: [...timeDiffs, timeDiff],
                             models: [...models, model],
                             date: new Date(),
@@ -181,7 +181,7 @@ function App() {
                         updateDoc(docRef, {
                             answers: newAnswers,
                             i: newAnswers.length,
-                            isWrong: [...isWrong, checkbox.checked],
+                            // isWrong: [...isWrong, checkbox.checked],
                             timeDiffs: [...timeDiffs, timeDiff],
                             models: [...models, model],
                             date: new Date(),
@@ -192,7 +192,7 @@ function App() {
             }
 
             setTimeBetweenQuestionsStart(new Date());
-            checkbox.checked = false;
+            // checkbox.checked = false;
 
             if (dataset && i + 1 >= dataset.length) {
                 alert("Thank you for your participation!");
@@ -262,7 +262,7 @@ function App() {
                 <div className="text-center justify-center mt-12">
                     {<MadeByMe/>}
                     <h1 className="text-4xl font-bold">
-                        Is the marked concept correct with respect to the <i>used for</i> relation?
+                        Is the marked concept correct with respect to the <b>related to</b> relation?
                     </h1>
                     <p className="text-xl mt-6" id="line">
                         <span className="ring-2 ring-blue-500 ring-offset-4 ring-offset-slate-50 rounded-md">
