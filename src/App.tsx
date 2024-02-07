@@ -289,16 +289,13 @@ function App() {
                             disabled={isLoading}>
                         No
                     </button>
+                    <button id="advanced-button"
+                            onClick={() => onClick("wrong")}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 shadow-lg disabled:bg-gray-500"
+                            disabled={isLoading}>
+                        Wrong
+                    </button>
                 </div>
-                <div className="flex justify-center mt-4">
-                        <p>
-                            Is this concept <a href="#"
-                                        className="text-blue-600 hover:text-blue-700 cursor-default"
-                                        title="Please select this option if the concept is erroneous">erroneous</a>?
-                        </p>
-                        <input id="hard-checkbox" type="checkbox"
-                               className="ml-2 h-6 w-6 rounded-full shadow checked:shadow-xl cursor-pointer"/>
-                    </div>
                     {isDownloaded && dataset ? <div className="flex justify-center mt-8 max-w-2xl mx-auto">
                         <div id={"progress-bar"}
                              className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full"

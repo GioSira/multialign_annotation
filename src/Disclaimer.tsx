@@ -8,7 +8,7 @@ function Disclaimer() {
                 <div className="text-2xl mt-4">Scope of this annotation task</div>
                 <p className="mt-2">
                     The goal of this task is simply to evaluate if Large Language Models are able to
-                    generate a correct concept given a category and a feature.
+                    generate a correct concept given a criterion.
                 </p>
                 <div className="text-2xl mt-4">What are you going to do?</div>
                 <p className="mt-2">
@@ -17,7 +17,7 @@ function Disclaimer() {
                 </p>
                 <p className="mt-2">
                     At any point during the annotation task, you can mark a concept as "<i>wrong</i>" if you
-                    find it erroneous. An erroneous concept could be a truncated word (e.g., "t-shi"), a fragment
+                    find it erroneous. An wrong concept could be a truncated word (e.g., "t-shi"), a fragment
                     of text (e.g., "that satisfy the"), or a fake word (e.g., "coucticanitic").
                 </p>
                 <p className="mt-2">
