@@ -17,7 +17,7 @@ type DataType = {
     dataset: string[],
     // isWrong: (true | false)[],
     timeDiffs: number[],
-    models: string[],
+    // models: string[],
     date: Date
 }
 
@@ -58,7 +58,7 @@ function App() {
     const [i, setI] = useState(0);
     const [answers, setAnswers] = useState<("yes" | "no" | "wrong")[]>([]);
     // const [isWrong, setIsWrong] = useState<(true | false)[]>([]);
-    const [models, setModels] = useState<string[]>([]);
+    // const [models, setModels] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isDownloaded, setIsDownloaded] = useState(false);
     const [timeBetweenQuestionsStart, setTimeBetweenQuestionsStart] = useState(new Date());
@@ -171,7 +171,7 @@ function App() {
                             setTimeDiffs(data.timeDiffs);
                             setI(data.i);
                             // setIsWrong(data.isWrong);
-                            setModels(data.models);
+                            //setModels(data.models);
                             setReady(true);
                         }
                     }
@@ -199,10 +199,10 @@ function App() {
                 // Check if the checkbox is checked
                 // const isWrong = checkbox.checked;
                 // @ts-ignore
-                const model = dataset[i]["model_name"];
+                // const model = dataset[i]["model_name"];
                 // setIsWrong([..."yes" | "no" | "wrong"ong, "yes" | "no" | "wrong"ongChecked]);
                 setTimeDiffs([...timeDiffs, timeDiff]);
-                setModels([...models, model]);
+                // setModels([...models, model]);
                 // Save the answers to firebase
                 const docRef = doc(firstore, "multialign/" + name);
                 await getDoc(docRef).then((docSnap) => {
@@ -215,7 +215,7 @@ function App() {
                             dataset: dataset,
                             // isWrong: [...isWrong, checkbox.checked],
                             timeDiffs: [...timeDiffs, timeDiff],
-                            models: [...models, model],
+                            // models: [...models, model],
                             date: new Date(),
                         });
                     } else {
@@ -225,7 +225,7 @@ function App() {
                             i: newAnswers.length,
                             // isWrong: [...isWrong, checkbox.checked],
                             timeDiffs: [...timeDiffs, timeDiff],
-                            models: [...models, model],
+                            // models: [...models, model],
                             date: new Date(),
                         });
                     }
