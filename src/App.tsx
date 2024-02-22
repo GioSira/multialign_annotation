@@ -317,7 +317,7 @@ function App() {
                             relation_translation(dataset? dataset[i]["relation"] : "")
                     } {
                             // @ts-ignore
-                            dataset ? dataset[i]["main_concept"] : ""
+                            dataset ? dataset[i]["concept"] : ""
                         }</pre>
                     </p>
                 </div>
