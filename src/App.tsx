@@ -7,7 +7,7 @@ import Disclaimer from "./Disclaimer"
 import MadeByMe from "./MadeByMe";
 import TopBanner from "./TopBanner";
 import Example from "./Example";
-import {data} from "./data/data";
+import {data} from "./data/data_semgpt";
 
 
 type DataType = {
@@ -21,22 +21,32 @@ type DataType = {
     date: Date
 }
 
+//const firebaseConfig = {
+//  apiKey: "AIzaSyC4ucBLoaMpGMRfLh8q-cxPBGQIcq4MIz0",
+//  authDomain: "semagram-gpt.firebaseapp.com",
+//  projectId: "semagram-gpt",
+//  storageBucket: "semagram-gpt.appspot.com",
+//  messagingSenderId: "174798440592",
+//  appId: "1:174798440592:web:ef74cfc206a4f3168bb015",
+//  measurementId: "G-ZK9LP9L4M9"
+//};
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC4ucBLoaMpGMRfLh8q-cxPBGQIcq4MIz0",
-  authDomain: "semagram-gpt.firebaseapp.com",
-  projectId: "semagram-gpt",
-  storageBucket: "semagram-gpt.appspot.com",
-  messagingSenderId: "174798440592",
-  appId: "1:174798440592:web:ef74cfc206a4f3168bb015",
-  measurementId: "G-ZK9LP9L4M9"
-};
+    apiKey: "AIzaSyBeE-0G1UR86xEEYBV_MXhLp5LzLEf9LQ4",
+    authDomain: "app1-23c8d.firebaseapp.com",
+    projectId: "app1-23c8d",
+    storageBucket: "app1-23c8d.appspot.com",
+    messagingSenderId: "913621122781",
+    appId: "1:913621122781:web:36b707c8e33cfa3c016534",
+    measurementId: "G-7ER4CG4390"
+  };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const firstore = getFirestore(app);
 const col = collection(firstore, "multialign") as CollectionReference<DataType>;
-
 
 function App() {
 
@@ -84,6 +94,38 @@ function App() {
                 document.body.removeChild(link);
             }
         });
+    }
+
+    const relation_translation = (relation: string) => {
+        if(relation == 'part') {
+            return 'can have a';
+        } else if(relation == 'material') {
+            return 'can be made of';
+        } else if(relation == 'hypernym') {
+            return 'is a';
+        } else if(relation == 'hyponym') {
+            return 'is a general term for';
+        } else if(relation == 'behavior' || relation == 'size' || relation == 'efficiency' || relation == 'taste' || relation == 'shape' || relation == 'color_pattern' || relation == 'consistency') {
+            return "can be";
+        } else if(relation == 'activity') {
+            return "can";
+        } else if(relation == 'how_to_use') {
+            return "can be used to / can be eaten when";
+        } else if(relation == 'purpose') {
+            return "is/are used for";
+        } else if(relation == 'content') {
+            return "can contain";
+        } else if(relation == 'product') {
+            return "can produce / can be used in the making of";
+        } else if(relation == 'supply') {
+            return "can use";
+        } else if(relation == 'movement') {
+            return "can / are";
+        } else if(relation == 'time') {
+            return "are active during";
+        } else {
+            return "";
+        }
     }
 
     const updateProgressBar = (ivalue: number, len: number) => {
@@ -270,7 +312,10 @@ function App() {
                                 // @ts-ignore
                                 dataset ? dataset[i]["llm_concept"] : ""
                             }</b>
-                        </span><pre>  [is/are] related to {
+                        </span><pre>  {
+                            //@ts-ignore
+                            relation_translation(dataset? dataset[i]["relation"] : "")
+                    } {
                             // @ts-ignore
                             dataset ? dataset[i]["main_concept"] : ""
                         }</pre>
