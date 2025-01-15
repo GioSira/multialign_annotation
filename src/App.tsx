@@ -7,7 +7,7 @@ import Disclaimer from "./Disclaimer"
 import MadeByMe from "./MadeByMe";
 import TopBanner from "./TopBanner";
 import Example from "./Example";
-import {data} from "./data/data_semgpt";
+import {data} from "./data/data";
 
 
 type DataType = {
@@ -46,7 +46,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const firstore = getFirestore(app);
-const col = collection(firstore, "multialign") as CollectionReference<DataType>;
+const col = collection(firstore, "multialign_last") as CollectionReference<DataType>;
 
 function App() {
 
@@ -204,7 +204,7 @@ function App() {
                 setTimeDiffs([...timeDiffs, timeDiff]);
                 // setModels([...models, model]);
                 // Save the answers to firebase
-                const docRef = doc(firstore, "multialign/" + name);
+                const docRef = doc(firstore, "multialign_last/" + name);
                 await getDoc(docRef).then((docSnap) => {
                     if (!docSnap.exists()) {
                         // Create a new document
@@ -312,12 +312,13 @@ function App() {
                                 // @ts-ignore
                                 dataset ? dataset[i]["llm_concept"] : ""
                             }</b>
-                        </span><pre>  {
+                        </span><pre> is {
                             //@ts-ignore
-                            relation_translation(dataset? dataset[i]["relation"] : "")
+                            //relation_translation(dataset? dataset[i]["relation"] : "")
+                            dataset? dataset[i]["relation"]: ""
                     } {
                             // @ts-ignore
-                            dataset ? dataset[i]["concept"] : ""
+                            dataset ? dataset[i]["main_concept"] : ""
                         }</pre>
                     </p>
                 </div>
