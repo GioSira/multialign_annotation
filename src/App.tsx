@@ -21,25 +21,25 @@ type DataType = {
     date: Date
 }
 
-//const firebaseConfig = {
-//  apiKey: "AIzaSyC4ucBLoaMpGMRfLh8q-cxPBGQIcq4MIz0",
-//  authDomain: "semagram-gpt.firebaseapp.com",
-//  projectId: "semagram-gpt",
-//  storageBucket: "semagram-gpt.appspot.com",
-//  messagingSenderId: "174798440592",
-//  appId: "1:174798440592:web:ef74cfc206a4f3168bb015",
-//  measurementId: "G-ZK9LP9L4M9"
-//};
-
 const firebaseConfig = {
-    apiKey: "AIzaSyBeE-0G1UR86xEEYBV_MXhLp5LzLEf9LQ4",
-    authDomain: "app1-23c8d.firebaseapp.com",
-    projectId: "app1-23c8d",
-    storageBucket: "app1-23c8d.appspot.com",
-    messagingSenderId: "913621122781",
-    appId: "1:913621122781:web:36b707c8e33cfa3c016534",
-    measurementId: "G-7ER4CG4390"
-  };
+  apiKey: "AIzaSyC4ucBLoaMpGMRfLh8q-cxPBGQIcq4MIz0",
+  authDomain: "semagram-gpt.firebaseapp.com",
+  projectId: "semagram-gpt",
+  storageBucket: "semagram-gpt.appspot.com",
+  messagingSenderId: "174798440592",
+  appId: "1:174798440592:web:ef74cfc206a4f3168bb015",
+  measurementId: "G-ZK9LP9L4M9"
+};
+
+//const firebaseConfig = {
+//    apiKey: "AIzaSyBeE-0G1UR86xEEYBV_MXhLp5LzLEf9LQ4",
+//    authDomain: "app1-23c8d.firebaseapp.com",
+//    projectId: "app1-23c8d",
+//    storageBucket: "app1-23c8d.appspot.com",
+//    messagingSenderId: "913621122781",
+//    appId: "1:913621122781:web:36b707c8e33cfa3c016534",
+//    measurementId: "G-7ER4CG4390"
+//  };
 
 
 // Initialize Firebase
